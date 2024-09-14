@@ -1,0 +1,66 @@
+.themeModeToggle {
+  display: flex;
+  justify-content: right;
+}
+
+.AppProfile {
+  display: flex;
+  gap: 15px;
+}
+
+.AppProfile img {
+  margin: 10px 0;
+}
+
+.AppName {
+  justify-content: center;
+}
+
+.AppName h2 {
+  color: aliceblue;
+}
+.AppName p {
+  color: aliceblue;
+}
+
+.logo-container {
+  /* text-align: center; */
+  /* margin-top: 20px; */
+  background: linear-gradient(135deg, #6e45e2, #88d3ce); /* Gradient warna */
+  padding: 20px;
+  border-radius: 0 0 15px 15px; /* Membuat sudut melengkung */
+}
+
+.logo-img {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+}
+
+.logo-name {
+  margin: 10px 0 0 0;
+  font-weight: bold;
+}
+
+.logo-username {
+  color: #8e8e93;
+}
+
+.balance-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ion-card {
+  margin: 20px;
+}
+
+.ion-col {
+  margin-top: 10px;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+}
