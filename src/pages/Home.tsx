@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonIcon, IonCard, IonCardHeader, IonCardContent, IonGrid, IonRow, IonCol } from "@ionic/react";
 import MetricConverter from "../components/MetricConverter";
 import { moon, sunny } from "ionicons/icons";
-import Button from "../components/Button";
-import ButtonRow from "../components/ButtonRow";
-import styles from "./Home.module.css";
+
 import "./Home.css";
 
 const Home: React.FC = () => {

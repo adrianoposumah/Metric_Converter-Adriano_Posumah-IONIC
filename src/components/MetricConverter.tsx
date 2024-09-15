@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { IonSelect, IonSelectOption, IonInput, IonLabel, IonItem, IonText, IonHeader } from "@ionic/react";
+import { IonSelect, IonSelectOption, IonInput, IonLabel, IonItem, IonText, IonButton, IonGrid, IonRow, IonCol } from "@ionic/react";
 import "./MetricConverter.css";
 
 const MetricSelect = {
   header: "Pilih Metrik",
   message: "Choose One",
-  tranlucent: true,
+  translucent: true,
 };
 
 const UnitSelect = {
@@ -41,19 +41,21 @@ const MetricConverter: React.FC = () => {
   const [selectedMetric, setSelectedMetric] = useState("");
   const [fromUnit, setFromUnit] = useState("");
   const [toUnit, setToUnit] = useState("");
-  const [inputValue, setInputValue] = useState<number | null>(null);
+  const [inputValue, setInputValue] = useState<string>("");
   const [convertedValue, setConvertedValue] = useState<number | string>("");
 
   const handleConvert = () => {
-    if (!selectedMetric || !fromUnit || !toUnit || inputValue === null) return;
+    if (!selectedMetric || !fromUnit || !toUnit || inputValue === "") return;
 
     const conversion = conversionRates[selectedMetric][fromUnit][toUnit];
     let result;
 
+    const numericInput = parseFloat(inputValue);
+
     if (typeof conversion === "function") {
-      result = conversion(inputValue);
+      result = conversion(numericInput);
     } else {
-      result = inputValue * conversion;
+      result = numericInput * conversion;
     }
 
     setConvertedValue(result);
@@ -62,18 +64,29 @@ const MetricConverter: React.FC = () => {
   const handleInputChange = (e: any) => {
     const value = e.target.value;
     if (!isNaN(value)) {
-      setInputValue(parseFloat(value));
+      setInputValue(value);
       handleConvert();
     } else {
       setConvertedValue("Invalid input");
     }
   };
 
+  const handleKeypadInput = (value: string) => {
+    if (value === "C") {
+      setInputValue("");
+      setConvertedValue("");
+    } else if (value === "Del") {
+      setInputValue(inputValue.slice(0, -1));
+    } else {
+      setInputValue(inputValue + value);
+    }
+    handleConvert();
+  };
+
   return (
     <div>
       <div className="select-body">
         <IonItem>
-          {/* <IonLabel>Dari:</IonLabel> */}
           <IonSelect
             value={selectedMetric}
             label="Metrik:"
@@ -95,7 +108,6 @@ const MetricConverter: React.FC = () => {
         </IonItem>
 
         <IonItem>
-          {/* <IonLabel>Ke:</IonLabel> */}
           <IonSelect value={fromUnit} label="Dari:" interfaceOptions={UnitSelect} interface="popover" placeholder="--Pilih Satuan" onIonChange={(e: CustomEvent) => setFromUnit(e.detail.value)} disabled={!selectedMetric}>
             {selectedMetric &&
               metrics[selectedMetric].map((unit: string) => (
@@ -107,7 +119,6 @@ const MetricConverter: React.FC = () => {
         </IonItem>
 
         <IonItem>
-          {/* <IonLabel>Ke:</IonLabel> */}
           <IonSelect value={toUnit} label="Ke:" interfaceOptions={UnitSelect} interface="popover" placeholder="--Pilih Satuan" onIonChange={(e: CustomEvent) => setToUnit(e.detail.value)} disabled={!selectedMetric || !fromUnit}>
             {selectedMetric &&
               metrics[selectedMetric].map((unit: string) => (
@@ -120,13 +131,91 @@ const MetricConverter: React.FC = () => {
 
         <IonItem>
           <IonLabel>Nilai:</IonLabel>
-          <IonInput value={inputValue || ""} placeholder="Masukkan nilai" onIonInput={handleInputChange} disabled={!selectedMetric || !fromUnit || !toUnit} />
+          <IonInput value={inputValue} placeholder="Masukkan nilai" onIonInput={handleInputChange} disabled={!selectedMetric || !fromUnit || !toUnit} />
         </IonItem>
 
         <IonItem>
           <IonLabel>Hasil:</IonLabel>
           <IonText>{convertedValue}</IonText>
         </IonItem>
+
+        {/* Keypad section */}
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("1")}>
+                1
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("2")}>
+                2
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("3")}>
+                3
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("4")}>
+                4
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("5")}>
+                5
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("6")}>
+                6
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("7")}>
+                7
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("8")}>
+                8
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("9")}>
+                9
+              </IonButton>
+            </IonCol>
+          </IonRow>
+          <IonRow>
+            <IonCol>
+              <IonButton
+                expand="full"
+                onClick={() => {
+                  handleKeypadInput("C");
+                  setConvertedValue(" ");
+                }}
+              >
+                C
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("0")}>
+                0
+              </IonButton>
+            </IonCol>
+            <IonCol>
+              <IonButton expand="full" onClick={() => handleKeypadInput("Del")}>
+                Del
+              </IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </div>
     </div>
   );
