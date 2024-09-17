@@ -4,7 +4,7 @@ Metric Converter adalah aplikasi konversi metrik yang dirancang dengan framework
 ![](https://github.com/adrianoposumah/Metric_Converter-Adriano_Posumah-IONIC/blob/main/assets/preview-aplikasi.gif)
 
 # Link Gdrive APK
-COMING SOON!!
+[Metric Converter APK](https://drive.google.com/file/d/1Srg9d2JuvRqff2pXAvb4GNBDFoD4mMjM/view?usp=sharing)
 
 # Fitur
 - Konversi Satuan: Konversi antara berbagai satuan metrik termasuk panjang, massa, waktu, arus listrik, intensitas cahaya, dan jumlah zat.
