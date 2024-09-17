@@ -26,9 +26,9 @@
 .logo-container {
   /* text-align: center; */
   /* margin-top: 20px; */
-  background: linear-gradient(135deg, #6e45e2, #88d3ce); /* Gradient warna */
+  background: linear-gradient(135deg, #6e45e2, #88d3ce);
   padding: 20px;
-  border-radius: 0 0 15px 15px; /* Membuat sudut melengkung */
+  border-radius: 0 0 15px 15px;
 }
 
 .logo-img {

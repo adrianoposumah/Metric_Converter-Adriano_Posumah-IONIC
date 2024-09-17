@@ -78,7 +78,7 @@ const MetricConverter: React.FC = () => {
       result = numericInput * conversion;
     }
 
-    setConvertedValue(result + " " + toUnit); // Menambahkan satuan hasil
+    setConvertedValue(result + " " + toUnit);
   };
 
   const handleInputChange = (e: any) => {
@@ -120,7 +120,7 @@ const MetricConverter: React.FC = () => {
               setSelectedMetric(e.detail.value);
               setFromUnit("");
               setToUnit("");
-              setConvertedValue(""); // Reset result when metric changes
+              setConvertedValue("");
             }}
           >
             {Object.keys(metrics).map((metric: string) => (
