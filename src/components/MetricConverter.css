@@ -13,3 +13,31 @@
 input {
   margin-top: 10px;
 }
+
+.keypad-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Membagi grid menjadi 3 kolom dengan lebar yang sama */
+  grid-gap: 10px; /* Jarak antar tombol */
+  margin-top: 20px; /* Memberi jarak antara keypad dan elemen lainnya */
+}
+
+.keypad-grid button {
+  padding: 20px;
+  font-size: 18px;
+  background-color: #f0f0f0;
+  color: black;
+  font-weight: 700;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.keypad-grid button:hover {
+  background-color: #e0e0e0; /* Warna berubah saat di-hover */
+}
+
+.keypad-grid button:active {
+  background-color: #d0d0d0; /* Warna saat tombol ditekan */
+}
